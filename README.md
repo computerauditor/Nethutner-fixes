@@ -10,6 +10,13 @@ rm -rf ~/.local/share/pnpm
 # Remove n8n globally (if installed via pnpm)
 pnpm remove -g n8n || true
 
+# Remove pnpm itself
+npm uninstall -g pnpm || true
+
+# Remove old n8n data (optional)
+rm -rf ~/.n8n
+
+
 ```
 ### Run as NON-ROOT user (kali) herein and not (root)
 
@@ -70,6 +77,167 @@ nvm alias default 20
 └─$ nvm alias default 20
 
 default -> 20 (-> v20.19.5)
+```
+🔹 Step 5
+
+Now switch to it immediately in this terminal:
+
+```
+nvm use 20
+```
+
+check 
+### COMMAND 
+
+```
+node -v
+npm -v
+```
+
+### OUTPUT
+```
+┌──(kali㉿localhost)-[~/Desktop/n8n]
+└─$ node -v
+npm -v
+
+v20.19.5
+10.8.2
+```
+
+🔹 Step 6 Install other important dependancies (Install build tools (needed for SQLite))
+
+1. Build tools and SQLite
+```
+sudo apt update
+sudo apt install -y build-essential python3 g++ make pkg-config libsqlite3-dev python-is-python3
+```
+
+2. Then tell npm which Python to use:
+```
+echo 'export PYTHON=/usr/bin/python3' >> ~/.zshrc 
+source ~/.zshrc
+```
+
+3. Install pnpm globally
+
+```
+npm install -g pnpm
+```
+Check it:
+```
+└─$ pnpm -v
+10.18.1
+```
+Step 4 — Install n8n globally
+
+```
+pnpm add -g n8n
+```
+
+### IF ERROR 
+We need to ensure pnpm’s global bin directory is set and in your PATH, otherwise installing n8n globally will fail like before.
+
+Step 1 — Find the pnpm global bin folder
+```
+pnpm bin -g
+```
+
+Step 2 — Add pnpm global bin to your PATH
+```
+export PNPM_HOME="$(pnpm bin -g)"
+export PATH="$PNPM_HOME:$PATH:$HOME/.local/bin"
+```
+### OUTPUT
+```
+┌──(kali㉿localhost)-[~/Desktop/n8n]
+└─$ pnpm bin -g
+
+/home/kali/.local/share/pnpm
+                                                                                                                                                   
+┌──(kali㉿localhost)-[~/Desktop/n8n]
+└─$ export PNPM_HOME="$(pnpm bin -g)"
+export PATH="$PNPM_HOME:$PATH:$HOME/.local/bin"
+```
+
+Step 3 — Make it permanent
+
+```
+echo 'export PNPM_HOME="$(pnpm bin -g)"' >> ~/.zshrc
+echo 'export PATH="$PNPM_HOME:$PATH:$HOME/.local/bin"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+Try again to Install n8n globally
+```
+pnpm add -g n8n
+```
+### or 
+```
+pnpm set registry https://registry.npmjs.org/
+pnpm add n8n --no-optional
+```
+In many cases few dependancies will be missing
+
+Try adding it mannually :
+step 1/2: Mannual install xlsx @0.20.2
+```
+┌──(kali㉿localhost)-[~/Desktop/n8n]
+└─$ pnpm add xlsx@0.20.2
+
+ ERR_PNPM_NO_MATCHING_VERSION  No matching version found for xlsx@0.20.2 while fetching it from https://registry.npmjs.org/
+This error happened while installing a direct dependency of /home/kali/Desktop/n8n
+The latest release of xlsx is "0.18.5".
+If you need the full list of all 108 published versions run "$ pnpm view xlsx versions".
+```
+
+step 2/2: So install the latest available xlsx ie @ 0.18.5
+```
+┌──(kali㉿localhost)-[~/Desktop/n8n]
+└─$ pnpm add xlsx@0.18.5
+Packages: +9
++++++++++
+Progress: resolved 9, reused 0, downloaded 9, added 9, done
+
+dependencies:
++ xlsx 0.18.5
+
+Done in 3.7s using pnpm v10.18.1
+
+```
+Now reinstall the n8n 
+
+### DIDN'T worked so 
+
+revised step 1/2: Forces pnpm to download all dependencies from npm registry, not the CDNs.
+```
+pnpm add -g n8n --registry=https://registry.npmjs.org/
+
+```
+— Download missing packages manually
+```
+Download xlsx-0.20.2.tgz manually:
+
+wget https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz -O ~/xlsx-0.20.2.tgz
+
+
+Install it with pnpm:
+
+pnpm add -g ~/xlsx-0.20.2.tgz
+
+
+Retry installing n8n:
+
+pnpm add -g n8n
+```
+
+```
+pnpm add -g n8n
+```
+
+Check it:
+```
+which n8n
+n8n --version
 ```
 
 
