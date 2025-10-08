@@ -73,16 +73,33 @@ export PULSE_SERVER=127.0.0.1
 say ```alias nh kex = ./sound ; nh kex; export PULSE_SERVER=127.0.0.1``` something like that
 
 
-## ****  3. KEX Default Passwd ***************** 
+## ****  3. KEX VNC Stopped *****************
+
+The kali vnc stops and shows error:
+
+ERROR
+```
+vncserver: No matching VNC server running for this user!
+vncserver: No matching VNC server running for this user!
+
+Error starting the KeX server.
+Please try "nethunter kex kill" or restart your termux session and try again.
+```
+
+Do the following type ```sudo su``` became the root usr and delete the ```rm root/.vnc/xstartup``` if that doesnt work remove the .vnc folder as well in the root ```rm -rf root/.vnc``` 
+
+Then reset the kali user passwd ```kex passwd``` , force stop termux and clear cache and then re-launch 
+
+## ****  4. KEX Default Passwd ***************** 
 
 When typing ```su``` default passwd will be ```root``` and not kali 
 can change it to kali using terminal commands
 
-## ****  4. Change between kali and root ***************** 
+## ****  5. Change between kali and root ***************** 
 
 just write ```su kali``` to switch to kali and ```su``` or ```sudo su``` to switch to root
 
-## ****  5. n8n installation ***************** 
+## ****  6. n8n installation ***************** 
 
 🔹 Step 0: Remove previous nvm/node/pnpm leftovers
 
@@ -325,5 +342,3 @@ Check it:
 which n8n
 n8n --version
 ```
-
-
