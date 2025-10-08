@@ -1,4 +1,4 @@
-###  1. KEX logout and  
+## ****  1. KEX LOGOUT Issue (NO ROOT) *****************  
 
 No password would work root,toor,kali,blank password,vnc passwd so ultimately kill the process of the screensaver/logout
 
