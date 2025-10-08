@@ -99,7 +99,13 @@ can change it to kali using terminal commands
 
 just write ```su kali``` to switch to kali and ```su``` or ```sudo su``` to switch to root
 
-## ****  6. n8n installation ***************** 
+## ****  6. KEX/Termux stopped status 9 (Crashed) *****************  
+
+On Android 12 and above this error is common status-9 crash , 
+- Enable developers mode in the system settings of Android
+- In the Dev Options -> Disable Child Process Restrictions and then re-start the termux app , all will work fine.
+
+## ****  7. n8n installation ***************** 
 
 🔹 Step 0: Remove previous nvm/node/pnpm leftovers
 
