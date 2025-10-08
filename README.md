@@ -1,3 +1,79 @@
+
+### ****  1. KEX logout and locked ***************** 
+
+No password would work root,toor,kali,blank password,vnc passwd so ultimately kill the process of the screensaver/logout
+
+# Try these all at once or one by one (they will only kill the lock screen process)
+
+```
+pkill -f xfce4-screensaver || true
+pkill -f light-locker || true
+pkill -f gnome-screensaver || true
+```
+
+# PRO TIPs :
+ 1. You can also uninstall the screen savour using ```sudo apt remove xfce4-screensaver``` [NOT YET TESTED]
+ 2. Can also try to disable lock timeout in system settings and startup settings -> Disable ScreenSaver
+
+### ****  2. KEX Sound ENABLE (NO ROOT) ***************** 
+
+Set up pulse audio in TERMUX first 
+
+
+Step 1 — Find the pnpm global bin folder
+```
+pkg update
+pkg install pulseaudio
+nano $PREFIX/etc/pulse/default.pa
+```
+
+COMMENT THIS LINE IF NOT ALREADY COMMENTED 
+```
+#load-module module-native-protocol-tcp
+```
+Below it paste this line
+```
+load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
+```
+
+Open this file
+```
+nano $PREFIX/etc/pulse/daemon.conf
+```
+
+and set the value of exit-idle-time to -1
+```
+exit-idle-time = -1
+```
+
+and then in finally make this as sound.sh in "Termux" only:
+
+sound
+```
+pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1
+```
+
+```
+chmod +x sound
+```
+
+```
+./sound
+```
+
+## Then in the Kali Nethunter run this command in the terminal 
+ 
+```
+export PULSE_SERVER=127.0.0.1
+```
+
+
+# PRO Tip
+-  Can run the "./sound" in termux & "export PULSE_SERVER=127.0.0.1" in the Kali Linux through some startup script in termux only.
+say ```alias nh kex = ./sound ; nh kex; export PULSE_SERVER=127.0.0.1``` something like that
+
+### ****  3. n8n installation ***************** 
+
 🔹 Step 0: Remove previous nvm/node/pnpm leftovers
 
 ```
