@@ -20,7 +20,8 @@ pkill -f gnome-screensaver || true
 Set up pulse audio in TERMUX first 
 
 
-Step 1 — Find the pnpm global bin folder
+Step 1 — In termux update the packages and install pulseaudio
+
 ```
 pkg update
 pkg install pulseaudio
