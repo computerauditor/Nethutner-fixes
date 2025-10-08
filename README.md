@@ -1,5 +1,5 @@
 
-### ****  1. KEX logout and locked ***************** 
+## ****  1. KEX logout and locked ***************** 
 
 No password would work root,toor,kali,blank password,vnc passwd so ultimately kill the process of the screensaver/logout
 
@@ -15,7 +15,7 @@ pkill -f gnome-screensaver || true
  1. You can also uninstall the screen savour using ```sudo apt remove xfce4-screensaver``` [NOT YET TESTED]
  2. Can also try to disable lock timeout in system settings and startup settings -> Disable ScreenSaver
 
-### ****  2. KEX Sound ENABLE (NO ROOT) ***************** 
+## ****  2. KEX Sound ENABLE (NO ROOT) ***************** 
 
 Set up pulse audio in TERMUX first 
 
@@ -73,7 +73,7 @@ export PULSE_SERVER=127.0.0.1
 -  Can run the "./sound" in termux & "export PULSE_SERVER=127.0.0.1" in the Kali Linux through some startup script in termux only.
 say ```alias nh kex = ./sound ; nh kex; export PULSE_SERVER=127.0.0.1``` something like that
 
-### ****  3. n8n installation ***************** 
+## ****  3. n8n installation ***************** 
 
 🔹 Step 0: Remove previous nvm/node/pnpm leftovers
 
