@@ -86,11 +86,18 @@ Error starting the KeX server.
 Please try "nethunter kex kill" or restart your termux session and try again.
 ```
 
-Do the following type ```sudo su``` became the root usr and delete the ```rm root/.vnc/xstartup``` if that doesnt work remove the .vnc folder as well in the root ```rm -rf root/.vnc``` 
+type ```sudo su``` became the root usr and delete the ```rm root/.vnc/xstartup``` if that doesnt work remove the .vnc folder as well in the root ```rm -rf root/.vnc``` 
 
 Then reset the kali user passwd ```kex passwd``` , force stop termux and clear cache and then re-launch 
 
-## ****  4. KEX Default Passwd ***************** 
+Try ```vncserver -depth 24 -geometry 1920x1080```
+Then again reset the ```kex passwd```
+
+### Pro Tip :
+
+- Can read the logs at ```cd /home/kali/.vnc/``` then ```ls``` , usually a ```localhost:1.log``` file is present , fed it to GPT and ask the issue from the last working Kex server log!
+
+## ****  4. KEX Default SU Passwd ***************** 
 
 When typing ```su``` default passwd will be ```root``` and not kali 
 can change it to kali using terminal commands
