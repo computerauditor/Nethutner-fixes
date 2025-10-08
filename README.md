@@ -72,7 +72,17 @@ export PULSE_SERVER=127.0.0.1
 -  Can run the "./sound" in termux & "export PULSE_SERVER=127.0.0.1" in the Kali Linux through some startup script in termux only.
 say ```alias nh kex = ./sound ; nh kex; export PULSE_SERVER=127.0.0.1``` something like that
 
-## ****  3. n8n installation ***************** 
+
+## ****  3. KEX Default Passwd ***************** 
+
+When typing ```su``` default passwd will be ```root``` and not kali 
+can change it to kali using terminal commands
+
+## ****  4. Change between kali and root ***************** 
+
+just write ```su kali``` to switch to kali and ```su``` or ```sudo su``` to switch to root
+
+## ****  5. n8n installation ***************** 
 
 🔹 Step 0: Remove previous nvm/node/pnpm leftovers
 
