@@ -1,3 +1,7 @@
+
+NOTE : 1. user ```kali``` has ```bash``` as default while user ```root``` has ```zsh``` by default (there to source type zsh/bash first and then use the source ~/.bashrc or zshrc)
+       2. default passwd of user ```kali``` is ```kali``` and ```sudo``` passwd is ```toor```
+
 ## ****  1. KEX LOGOUT Issue (NO ROOT) *****************  
 
 No password would work root,toor,kali,blank password,vnc passwd so ultimately kill the process of the screensaver/logout
@@ -178,6 +182,10 @@ On Android 12 and above this error is common status-9 crash ,
 
 ## ****  7. n8n installation ***************** 
 
+⚠️ NEVER use the package name as the directory 
+eg : do not ```mkdir n8n``` ❌
+            ```mkdir n8n-test```✅
+
 🔹 Step 0: Remove previous nvm/node/pnpm leftovers
 
 ```
@@ -208,7 +216,9 @@ curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bas
 ```
 This installs nvm to ~/.nvm and updates some shell profile files (~/.bashrc or ~/.zshrc) automatically.
 
-🔹 Step 2: Load nvm in the current terminal
+NOTE : user ```kali``` has ```bash``` as default while user ```root``` has ```zsh``` by default
+
+🔹 Step 2: Load nvm in the current terminal ie copy paste this in the zshrc and bashrc
 
 ```
 export NVM_DIR="$HOME/.nvm"
@@ -220,7 +230,7 @@ Right after installing, your terminal doesn’t yet “know” about nvm. Load i
 🔹 Step 3: Test if nvm works
 
 ```
-┌──(kali㉿localhost)-[~/Desktop/n8n]
+┌──(kali㉿localhost)-[~/Desktop/n8n-test]
 └─$ nvm --version
 
 0.39.4
@@ -232,7 +242,7 @@ nvm install 20
 ```
 ### OUTPUT
 ```
-┌──(kali㉿localhost)-[~/Desktop/n8n]
+┌──(kali㉿localhost)-[~/Desktop/n8n-test]
 └─$ nvm install 20
 
 Downloading and installing node v20.19.5...
@@ -246,14 +256,14 @@ Creating default alias: default -> 20 (-> v20.19.5)
 
 ### COMMAND
 
-After installation, set it as the default:
+After installation, set it as the default: [OPTIONAL as if nothing is install it would by default itself]
 
 ``` 
 nvm alias default 20
 ```
 
 ```
-┌──(kali㉿localhost)-[~/Desktop/n8n]
+┌──(kali㉿localhost)-[~/Desktop/n8n-test]
 └─$ nvm alias default 20
 
 default -> 20 (-> v20.19.5)
@@ -276,7 +286,7 @@ npm -v
 
 ### OUTPUT
 ```
-┌──(kali㉿localhost)-[~/Desktop/n8n]
+┌──(kali㉿localhost)-[~/Desktop/n8n-test]
 └─$ node -v
 npm -v
 
@@ -329,12 +339,12 @@ export PATH="$PNPM_HOME:$PATH:$HOME/.local/bin"
 ```
 ### OUTPUT
 ```
-┌──(kali㉿localhost)-[~/Desktop/n8n]
+┌──(kali㉿localhost)-[~/Desktop/n8n-test]
 └─$ pnpm bin -g
 
 /home/kali/.local/share/pnpm
                                                                                                                                                    
-┌──(kali㉿localhost)-[~/Desktop/n8n]
+┌──(kali㉿localhost)-[~/Desktop/n8n-test]
 └─$ export PNPM_HOME="$(pnpm bin -g)"
 export PATH="$PNPM_HOME:$PATH:$HOME/.local/bin"
 ```
@@ -361,18 +371,18 @@ In many cases few dependancies will be missing
 Try adding it mannually :
 step 1/2: Mannual install xlsx @0.20.2
 ```
-┌──(kali㉿localhost)-[~/Desktop/n8n]
+┌──(kali㉿localhost)-[~/Desktop/n8n-test]
 └─$ pnpm add xlsx@0.20.2
 
  ERR_PNPM_NO_MATCHING_VERSION  No matching version found for xlsx@0.20.2 while fetching it from https://registry.npmjs.org/
-This error happened while installing a direct dependency of /home/kali/Desktop/n8n
+This error happened while installing a direct dependency of /home/kali/Desktop/n8n-test
 The latest release of xlsx is "0.18.5".
 If you need the full list of all 108 published versions run "$ pnpm view xlsx versions".
 ```
 
 step 2/2: So install the latest available xlsx ie @ 0.18.5
 ```
-┌──(kali㉿localhost)-[~/Desktop/n8n]
+┌──(kali㉿localhost)-[~/Desktop/n8n-test]
 └─$ pnpm add xlsx@0.18.5
 Packages: +9
 +++++++++
