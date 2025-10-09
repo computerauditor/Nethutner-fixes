@@ -87,3 +87,29 @@ $ tree
 
 4 directories, 2 files
 ```
+
+
+### NOW
+
+```
+sudo apt update
+sudo apt install -y build-essential python3 make g++ libsqlite3-dev
+```
+
+Rebuid using pnpm [OPTIONAL -> Not Worked]
+```
+# ensure sqlite3 is a dependency in package.json (not just in pnpm store)
+pnpm add sqlite3 --save
+
+# rebuild native modules (recompiles for your current Node)
+pnpm rebuild sqlite3
+# or rebuild all native modules
+pnpm rebuild
+```
+chmod for permissions 
+
+```
+chmod 600 ~/.n8n/config || true   # create file first if it doesn't exist: touch ~/.n8n/config && chmod 600 ~/.n8n/config
+export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+# To persist, add the export to ~/.profile or your shell rc
+```
