@@ -90,18 +90,18 @@ run ```nh -r``` in "Termux" and set a ```kex passwd``` , basically set a kex cli
 
 # Additionally if it doesn't work then 
 ------------------------------------------------------------------------------------------------
-#"INSIDE TERMUX"
+* INSIDE TERMUX :- 
 - make a backup of ```nethunter``` script inside ```data/data/com.termux/files/usr/bin```
 - Get the latest nethunter script from ```https://offs.ec/2MceZWr``` copy paste the content as ```nano nethunter``` in data/data/com.termux/files/usr/bin/nethunter and remember to ```chmod +x nethunter```
 - It will rerun the installer and restart the nh set up ```DO NOT DELETE THE ROOTFS or the existing installation``` just go on typing ```N``` and go through the set.
    
-#"INSIDE KALI"
+* INSIDE KALI :-
 - make a backup of kex file if any inside ```data/data/com.termux/files/home/kali-arm64/usr/bin```
 - ```nano kex``` and paste the content of kex inside it
 - ```chmod +x kex```
 - and place it in the /usr/bin folder
 
-#"Then go into nh -r" 
+* Then became the root user by ```su``` in kali or  ```nh -r``` from termux  
 
 Search for this file ```tmp/.X11``` and check its ownership & permisions 
 
@@ -109,7 +109,7 @@ Search for this file ```tmp/.X11``` and check its ownership & permisions
 ls -ld /tmp/.X11-unix /tmp
 ```
 
-# once you're root, run:
+* Once you're root, run:
 ```
 chown root:root /tmp
 chown root:root /tmp/.X11-unix
@@ -117,7 +117,7 @@ chmod 1777 /tmp
 chmod 1777 /tmp/.X11-unix
 ```
 
-# show the new ownership/permissions
+* show the new ownership/permissions
 ```
 ls -ld /tmp /tmp/.X11-unix
 ```
@@ -128,7 +128,8 @@ ls -ld /tmp /tmp/.X11-unix
 - Force stop the termux and clear cache
 - Reset the kex passwd in kali user as ```nh kex passwd```
 
-ALTERNATE FIXES ------------------------------------------------------------------------------
+### ALTERNATE FIXES (KEX VNC ) if the above fixes doesn't worked ---------------------------------------------------------------------
+
 ## FIX 1
 type ```sudo su``` became the root usr and delete the ```rm root/.vnc/xstartup``` if that doesnt work remove the .vnc folder as well in the root ```rm -rf root/.vnc``` 
 
@@ -155,9 +156,10 @@ vncserver -depth 24 -geometry 1920x1080 :1
 
 END ALTERNATE FIXES ------------------------------------------------------------------------------
 
-### Pro Tip :
+## Pro Tip :
 
 - Can read the logs at ```cd /home/kali/.vnc/``` then ```ls``` , usually a ```localhost:1.log``` file is present , fed it to GPT and ask the issue from the last working Kex server log!
+- In Dev Options of Android disable child process restrictions
 
 ## ****  4. KEX Default SU Passwd ***************** 
 
