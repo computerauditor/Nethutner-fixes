@@ -55,8 +55,13 @@ There was an error initializing DB
 SQLite package has not been found installed. Try to install it: npm install sqlite3 --save
 ```
 
+### SQLite error
+
+(also refer ```https://gist.github.com/ScottJWalter/7a44d6d081ec065f1df7ea5aea72edf4``` excelent script)
+
 So tried ```npm install sqlite3 --save``` didn't worked hence again tried pnpm 
 
+Install sqlite3 in the same working directory ie: /automation 
 ```
 pnpm add sqlite3
 ```
@@ -65,16 +70,11 @@ pnpm add sqlite3
 .....
 dependencies:
 + sqlite3 5.1.7
-
 Done in 1m 54.2s using pnpm v10.18.1
-
 ```
-
-
 ```
 tree
 ```
-
 ```
 (kali?localhost)-[~/automation]
 $ tree
@@ -84,32 +84,25 @@ $ tree
 ?�� ??? sqlite3 -> .pnpm/sqlite3@5.1.7/node_modules/sqlite3
 ??? package.json
 ??? pnpm-lock.yaml
-
 4 directories, 2 files
 ```
 
-
-### NOW
-
+# Then rebuild SQLite3
 ```
 sudo apt update
 sudo apt install -y build-essential python3 make g++ libsqlite3-dev
 ```
-
-Rebuid using pnpm [OPTIONAL -> Not Worked]
-```
-# ensure sqlite3 is a dependency in package.json (not just in pnpm store)
-pnpm add sqlite3 --save
-
-# rebuild native modules (recompiles for your current Node)
-pnpm rebuild sqlite3
-# or rebuild all native modules
-pnpm rebuild
-```
-chmod for permissions 
-
+chmod for permissions -- fixes permisions
 ```
 chmod 600 ~/.n8n/config || true   # create file first if it doesn't exist: touch ~/.n8n/config && chmod 600 ~/.n8n/config
 export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 # To persist, add the export to ~/.profile or your shell rc
+```
+
+Rebuid using pnpm [OPTIONAL -> Not Worked]
+```
+pnpm add sqlite3 --save            # ensure sqlite3 is a dependency in package.json (not just in pnpm store)
+pnpm rebuild sqlite3               # rebuild native modules (recompiles for your current Node)
+ OR 
+pnpm rebuild                       # or rebuild all native modules
 ```
