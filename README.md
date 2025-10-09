@@ -88,18 +88,42 @@ Please try "nethunter kex kill" or restart your termux session and try again.
 The issue is due to the xstartup file ```cd /home/kali/.vnc``` cp the logs to ```/Desktop``` for reference and chatgpt if needed
 run ```nh -r``` in "Termux" and set a ```kex passwd``` , basically set a kex client on the through sudo user it will run successfully cp the xstart file from the ```/root/.vnc``` and paste it at ```/home/kali/.vnc``` 
 
-Additionally if it doesn't work then 
-
-"INSIDE TERMUX"
+# Additionally if it doesn't work then 
+------------------------------------------------------------------------------------------------
+#"INSIDE TERMUX"
 - make a backup of ```nethunter``` script inside ```data/data/com.termux/files/usr/bin```
 - Get the latest nethunter script from ```https://offs.ec/2MceZWr``` copy paste the content as ```nano nethunter``` in data/data/com.termux/files/usr/bin/nethunter and remember to ```chmod +x nethunter```
-"INSIDE KALI"
+- It will rerun the installer and restart the nh set up ```DO NOT DELETE THE ROOTFS or the existing installation``` just go on typing ```N``` and go through the set.
+   
+#"INSIDE KALI"
 - make a backup of kex file if any inside ```data/data/com.termux/files/home/kali-arm64/usr/bin```
 - ```nano kex``` and paste the content of kex inside it
 - ```chmod +x kex```
 - and place it in the /usr/bin folder
 
-Points to Remember :
+#"Then go into nh -r" 
+
+Search for this file ```tmp/.X11``` and check its ownership & permisions 
+
+```
+ls -ld /tmp/.X11-unix /tmp
+```
+
+# once you're root, run:
+```
+chown root:root /tmp
+chown root:root /tmp/.X11-unix
+chmod 1777 /tmp
+chmod 1777 /tmp/.X11-unix
+```
+
+# show the new ownership/permissions
+```
+ls -ld /tmp /tmp/.X11-unix
+```
+------------------------------------------------------------------------------------------------
+
+# Points to Remember :
 - Dev Options -> Disable child process
 - Force stop the termux and clear cache
 - Reset the kex passwd in kali user as ```nh kex passwd```
@@ -128,6 +152,7 @@ rm -rf /tmp/.X* /tmp/.xfsm* /tmp/.l2s* /tmp/.ICE-unix
 vncserver -kill :*
 vncserver -depth 24 -geometry 1920x1080 :1
 ```
+
 END ALTERNATE FIXES ------------------------------------------------------------------------------
 
 ### Pro Tip :
