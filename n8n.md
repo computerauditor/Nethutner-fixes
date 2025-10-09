@@ -106,3 +106,7 @@ pnpm rebuild sqlite3               # rebuild native modules (recompiles for your
  OR 
 pnpm rebuild                       # or rebuild all native modules
 ```
+Using npm complining the SQLite3
+```
+npm install sqlite3 --build-from-source --sqlite=/home/kali/automation/node_modules/sqlite3 -g
+```
