@@ -110,3 +110,7 @@ Using npm complining the SQLite3
 ```
 npm install sqlite3 --build-from-source --sqlite=/home/kali/automation/node_modules/sqlite3 -g
 ```
+SQLite3 using apt
+```
+sudo apt install sqlite3
+```
