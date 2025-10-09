@@ -1,4 +1,4 @@
-configuration of kali 
+### Configuration of kali 
 
 nvm installed node 22 and 20 with pnpm, yarn and npm didnt worked 
 i let it installed 
@@ -6,9 +6,9 @@ i let it installed
 ```
 (kali-localhost)-[~/automation]
 $ nodejs -v ; npm -v ; pnpm -v                                                                             
-v20.19.4
-10.8.2
-10.18.1
+v20.19.4 #nodejs
+10.8.2 #npm
+10.18.1 #pnpm 
 ```
 ```n8n version 1.114.4```
 
@@ -41,3 +41,49 @@ pnpm add n8n
 
 This installs the n8n using pnpm 
 
+```
+pnpm exec n8n
+```
+
+ERROR
+
+```
+No encryption key found - Auto-generating and saving to: /home/kali/.n8n/config
+Permissions 0660 for n8n settings file /home/kali/.n8n/config are too wide. This is ignored for now, but in the future n8n will attempt to change the permissions automatically. To automatically enforce correct permissions now set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true (recommended), or turn this check off set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false.
+Initializing n8n process
+There was an error initializing DB
+SQLite package has not been found installed. Try to install it: npm install sqlite3 --save
+```
+
+So tried ```npm install sqlite3 --save``` didn't worked hence again tried pnpm 
+
+```
+pnpm add sqlite3
+```
+
+```
+.....
+dependencies:
++ sqlite3 5.1.7
+
+Done in 1m 54.2s using pnpm v10.18.1
+
+```
+
+
+```
+tree
+```
+
+```
+(kali?localhost)-[~/automation]
+$ tree
+.
+??? node_modules
+?�� ??? n8n -> .pnpm/n8n@1.114.4_0725ed04a2a2a35c694575b9b91a2375/node_modules/n8n
+?�� ??? sqlite3 -> .pnpm/sqlite3@5.1.7/node_modules/sqlite3
+??? package.json
+??? pnpm-lock.yaml
+
+4 directories, 2 files
+```
