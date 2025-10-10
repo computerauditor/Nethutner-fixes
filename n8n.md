@@ -37,7 +37,7 @@ pnpm init
 pnpm add n8n
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  OR 
+  OR if wants global installation 
 
 ## GLOABALLY 
 
@@ -48,7 +48,7 @@ pnpm setup
 ```
 pnpm add n8n -g
 pnpm add sqlite3 -g
-pnpm add xlsx@0.18.5 -g
+pnpm add xlsx@0.18.5 -g      # OPTIONAL if it shows some excel error then use this 
 ```
 all installed successfully  
 
@@ -87,7 +87,14 @@ export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 ```
 PERMISSION ERROR FIXED!!!
 
-### SQLite error
+### SQLite error :
+
+pnpm stores global modules in a content-addressed store and creates symlinks in:
+```
+~/.local/share/pnpm/global/5/node_modules
+```
+However, when n8n runs, it expects to require('sqlite3') in its own node_modules, not globally.
+Because pnpm isolates packages, n8n can’t see sqlite3 even though it’s installed globally.
 
 ```https://stackoverflow.com/questions/58317165/installing-sqlite3-for-nodejs```
 (also refer ```https://gist.github.com/ScottJWalter/7a44d6d081ec065f1df7ea5aea72edf4``` excelent script)
