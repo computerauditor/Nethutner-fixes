@@ -107,7 +107,6 @@ pnpm rebuild sqlite3               # rebuild native modules (recompiles for your
 pnpm rebuild                       # or rebuild all native modules
 ```
 
-( Using root on a diff device can use kali also I think)
 ```
 (root_kali)-[~/Desktop/automation]
 $node -v
