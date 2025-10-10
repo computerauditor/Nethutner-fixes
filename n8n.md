@@ -25,6 +25,8 @@ sudo chmod -R 777 /root/.npm
 ```
 didn't worked proper so used pnpm
 
+## LOCALLY
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
 mkdir automation
 cd automation/
@@ -34,8 +36,34 @@ pnpm init
 ```
 pnpm add n8n
 ```
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  OR 
 
-This installs the n8n using pnpm 
+## GLOABALLY 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
+pnpm setup
+```
+```
+pnpm add n8n -g
+pnpm add sqlite3 -g
+pnpm add xlsx@0.18.5 -g
+```
+all installed successfully  
+
+```
+cd /home/kali/.local/share/pnpm/global/5/node_modules
+```
+
+```
+┌──(kali㉿localhost)-[~/.local/share/pnpm/global/5/node_modules]
+└─$ ls
+n8n  sqlite3  xlsx
+```
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+This installs the n8n using pnpm either locally or gloablly 
 
 ```
 pnpm exec n8n
@@ -57,6 +85,7 @@ chmod 600 ~/.n8n/config || true   # create file first if it doesn't exist: touch
 export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 # To persist, add the export to ~/.profile or your shell rc
 ```
+PERMISSION ERROR FIXED!!!
 
 ### SQLite error
 
