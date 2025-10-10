@@ -106,11 +106,27 @@ pnpm rebuild sqlite3               # rebuild native modules (recompiles for your
  OR 
 pnpm rebuild                       # or rebuild all native modules
 ```
-Using npm complining the SQLite3
+
+( Using root on a diff device can use kali also I think)
 ```
-npm install sqlite3 --build-from-source --sqlite=/home/kali/automation/node_modules/sqlite3 -g
+(root_kali)-[~/Desktop/automation]
+$node -v
+pnpm -v
+which node
+command -v n8n
+pnpm root -g
+
+v20.19.4
+10.18.2
+/usr/bin/node
+/root/.local/share/pnpm/global/5/node_modules
 ```
-SQLite3 using apt
 ```
-sudo apt install sqlite3
+cd /root/.local/share/pnpm/global/5/node_modules
 ```
+
+
+
+
+
+
