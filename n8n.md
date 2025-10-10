@@ -25,6 +25,12 @@ sudo chmod -R 777 /root/.npm
 ```
 didn't worked proper so used pnpm
 
+NOTE : The following error is a NETWORK ERROR switch to a better wifi or try to increase timeout of the installing package 
+```
+npm error code ETIMEDOUT
+npm error errno ETIMEDOUT
+```
+
 ## LOCALLY
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
