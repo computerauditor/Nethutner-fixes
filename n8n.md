@@ -55,6 +55,13 @@ There was an error initializing DB
 SQLite package has not been found installed. Try to install it: npm install sqlite3 --save
 ```
 
+chmod for permissions -- fixes permisions
+```
+chmod 600 ~/.n8n/config || true   # create file first if it doesn't exist: touch ~/.n8n/config && chmod 600 ~/.n8n/config
+export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+# To persist, add the export to ~/.profile or your shell rc
+```
+
 ### SQLite error
 
 (also refer ```https://gist.github.com/ScottJWalter/7a44d6d081ec065f1df7ea5aea72edf4``` excelent script)
@@ -92,12 +99,6 @@ $ tree
 sudo apt update
 sudo apt install -y build-essential python3 make g++ libsqlite3-dev
 ```
-chmod for permissions -- fixes permisions
-```
-chmod 600 ~/.n8n/config || true   # create file first if it doesn't exist: touch ~/.n8n/config && chmod 600 ~/.n8n/config
-export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-# To persist, add the export to ~/.profile or your shell rc
-```
 
 Rebuid using pnpm [OPTIONAL -> Not Worked]
 ```
@@ -106,24 +107,55 @@ pnpm rebuild sqlite3               # rebuild native modules (recompiles for your
  OR 
 pnpm rebuild                       # or rebuild all native modules
 ```
-
+COMMAND
 ```
-(root_kali)-[~/Desktop/automation]
-$node -v
+node -v
 pnpm -v
 which node
 command -v n8n
 pnpm root -g
-
+```
+OUTPUT
+```
 v20.19.4
 10.18.2
 /usr/bin/node
 /root/.local/share/pnpm/global/5/node_modules
 ```
+So cd to the node_modules dir and rebuild sqlite3 if you find it
 ```
 cd /root/.local/share/pnpm/global/5/node_modules
 ```
+This dir stores the global binaries i think , so add the sqlite3 binary herein 
 
+If already not setup pnpm then set it up now
+```
+pnpm setup
+```
+This will:
+
+Create the global package directory (usually ~/.local/share/pnpm)
+Set the PNPM_HOME environment variable (Add it to your shell’s PATH (in ~/.bashrc, ~/.zshrc, etc.) . Then source ~/.bashrc and ~/.zshrc
+
+```
+pnpm add -g sqlite3
+```
+
+OUTPUT
+```
+┌──(kali㉿localhost)-[~]
+└─$ pnpm install sqlite3 -g
+/home/kali/.local/share/pnpm/global/5:
++ sqlite3 5.1.7
+
+╭ Warning ──────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                               │
+│   Ignored build scripts: sqlite3.                                                             │
+│   Run "pnpm approve-builds -g" to pick which dependencies should be allowed to run scripts.   │
+│                                                                                               │
+╰───────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 8.5s using pnpm v10.18.1
+```
 
 
 
