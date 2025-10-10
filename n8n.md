@@ -60,7 +60,34 @@ export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
 ### SQLite error
 
+```https://stackoverflow.com/questions/58317165/installing-sqlite3-for-nodejs```
 (also refer ```https://gist.github.com/ScottJWalter/7a44d6d081ec065f1df7ea5aea72edf4``` excelent script)
+
+```
+npm cache clean
+npm install -g npm
+sudo  npm install -g npm
+npm install  -g node-gyp
+npm install --save sqlite3
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 So tried ```npm install sqlite3 --save``` didn't worked hence again tried pnpm 
 
