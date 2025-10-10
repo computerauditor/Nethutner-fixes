@@ -101,18 +101,22 @@ pnpm stores global modules in a content-addressed store and creates symlinks in:
 ```
 However, when n8n runs, it expects to require('sqlite3') in its own node_modules, not globally.
 Because pnpm isolates packages, n8n can’t see sqlite3 even though it’s installed globally.
-
-```https://stackoverflow.com/questions/58317165/installing-sqlite3-for-nodejs```
-(also refer ```https://gist.github.com/ScottJWalter/7a44d6d081ec065f1df7ea5aea72edf4``` excelent script)
-
 ```
-npm cache clean
-npm install -g npm
-sudo  npm install -g npm
-npm install  -g node-gyp
-npm install --save sqlite3
+cd n8n 
 ```
 
+ie: ```cd ~/.local/share/pnpm/global/5/node_modules/n8n```
+and inside this add sqlite3
+
+```pnpm add sqlite3```
+then 
+```
+pnpm approve-builds
+```
+then approve all the packages ```press a``` and then ```ENTER``` to approve all the packages
+
+RUN n8n
+```n8n```
 
 
 
@@ -124,12 +128,7 @@ npm install --save sqlite3
 
 
 
-
-
-
-
-
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 So tried ```npm install sqlite3 --save``` didn't worked hence again tried pnpm 
 
@@ -223,6 +222,6 @@ Done in 8.5s using pnpm v10.18.1
 ```
 
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
