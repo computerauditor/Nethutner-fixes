@@ -69,11 +69,56 @@ n8n  sqlite3  xlsx
 ```
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+### NOTE : Try not adding sqlite and xlsx if n8n installs and shows the below output after doing the pnpm add n8n (with/without g) it will show the following in output
+
+```
+pnpm exec n8n  # or n8n (if globally)
+```
+
+output
+```
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Progress: resolved 1633, reused 1389, downloaded 218, added 1614, done  WARN  Issues with peer dependencies found . ├─┬ openai 5.12.2 │ └── ✕ unmet peer ws@^8.18.0: found 8.17.1 ├─┬ langchain 0.3.33 │ └─┬ @langchain/openai 0.6.7 │ └─┬ openai 5.23.2 │ └── ✕ unmet peer ws@^8.18.0: found 8.17.1 ├─┬ @browserbasehq/stagehand 1.14.0 │ └── ✕ unmet peer openai@^4.62.1: found 5.12.2 └─┬ n8n 1.114.4 ├─┬ @n8n/db 0.25.1 │ └─┬ @n8n/typeorm 0.3.20-12 │ ├── ✕ unmet peer mongodb@^5.8.0: found 6.11.0 │ └── ✕ unmet peer @sentry/node@<=8.x: found 9.46.0 ├─┬ @n8n/n8n-nodes-langchain 1.113.1 │ └─┬ @langchain/community 0.3.50 │ ├── ✕ unmet peer mongodb@^6.17.0: found 6.11.0 │ └── ✕ unmet peer @qdrant/js-client-rest@^1.15.0: found 1.14.1 └─┬ @rudderstack/rudder-sdk-node 2.1.4 └── ✕ unmet peer tslib@2.6.2: found 2.8.1 dependencies: + n8n 1.114.4 ╭ Warning ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮ │ │ │ Ignored build scripts: @parcel/watcher, @scarf/scarf, @sentry-internal/node-native-stacktrace, cpu-features, msgpackr-extract, │ │ protobufjs, sqlite3, ssh2. │ │ Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts. │ │ │ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯ Done in 4m 54.4s using pnpm v10.18.2
+```
+
 This installs the n8n using pnpm either locally or gloablly 
+```
+pnpm approve-builds
+```
+press ```a``` and then ```ENTER``` to approve all the builds run again you will be greated with the following errors
+
+ERROR OUTPUT
+```
+┌──(kali㉿localhost)-[~/automation] └─$ pnpm exec n8n Initializing n8n process n8n ready on ::, port 5678 There are deprecations related to your environment variables. Please take the recommended actions to update your configuration: - DB_SQLITE_POOL_SIZE -> Running SQLite without a pool of read connections is deprecated. Please set DB_SQLITE_POOL_SIZE to a value higher than zero. See: https://docs.n8n.io/hosting/configuration/environment-variables/database/#sqlite - N8N_RUNNERS_ENABLED -> Running n8n without task runners is deprecated. Task runners will be turned on by default in a future version. Please set N8N_RUNNERS_ENABLED=true to enable task runners now and avoid potential issues in the future. Learn more: https://docs.n8n.io/hosting/configuration/task-runners/ - N8N_BLOCK_ENV_ACCESS_IN_NODE -> The default value of N8N_BLOCK_ENV_ACCESS_IN_NODE will be changed from false to true in a future version. If you need to access environment variables from the Code Node or from expressions, please set N8N_BLOCK_ENV_ACCESS_IN_NODE=false. Learn more: https://docs.n8n.io/hosting/configuration/environment-variables/security/ - N8N_GIT_NODE_DISABLE_BARE_REPOS -> Support for bare repositories in the Git Node will be removed in a future version due to security concerns. If you are not using bare repositories in the Git Node, please set N8N_GIT_NODE_DISABLE_BARE_REPOS=true. Learn more: https://docs.n8n.io/hosting/configuration/environment-variables/security/ [license SDK] Skipping renewal on init: license cert is not initialized double free or corruption (out)  ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command was killed with SIGABRT (Aborted): n8n
+```
+
+Rebuild sqlite to fix double free or corruption (out) error
+```
+pnpm rebuild sqlite3
+```
+add better-sqlite3 in the same n8n dir where all packages are located  
+```
+pnpm add better-sqlite3
+```
+Inside the same n8n dir where all packages are located ```nano .env``` and paste the following code:
+```
+DB_TYPE=sqlite
+DB_SQLITE_POOL_SIZE=5
+N8N_RUNNERS_ENABLED=true
+N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+N8N_GIT_NODE_DISABLE_BARE_REPOS=true
+```
+
+then finally 
 
 ```
 pnpm exec n8n
 ```
+
+It should work now !!! ✅
+
+
+### OTHER ERRORS AND POSSIBLE SOLUTIONS :
+
 
 ERROR
 
@@ -85,7 +130,7 @@ There was an error initializing DB
 SQLite package has not been found installed. Try to install it: npm install sqlite3 --save
 ```
 
-chmod for permissions -- fixes permisions
+this basically means few permission error so chmod for permissions -- fixes permisions and sqlite is not found by n8n so install it in the same directory of n8n packages
 ```
 chmod 600 ~/.n8n/config || true   # create file first if it doesn't exist: touch ~/.n8n/config && chmod 600 ~/.n8n/config
 export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
@@ -95,6 +140,12 @@ PERMISSION ERROR FIXED!!!
 
 ### SQLite error :
 Can Try :
+
+## Best Way : is after installing  n8n using pnpm ```pnpm approve-builds``` and select all and approve it other possible ways are as below :
+
+```
+pnpm add sqlite3 -g # or pnpm add sqlite3 (inside the n8n dir where all packages are located and then may have to rebuild it)
+```
 
 pnpm stores global modules in a content-addressed store and creates symlinks in:
 ```
@@ -144,106 +195,4 @@ rm /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4
 rm /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/@n8n/n8n-nodes-langchain
 rm /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/@n8n/n8n-nodes-langchain
 ```
-
-
-
-
-
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-So tried ```npm install sqlite3 --save``` didn't worked hence again tried pnpm 
-
-Install sqlite3 in the same working directory ie: /automation 
-```
-pnpm add sqlite3
-```
-
-```
-.....
-dependencies:
-+ sqlite3 5.1.7
-Done in 1m 54.2s using pnpm v10.18.1
-```
-```
-tree
-```
-```
-(kali?localhost)-[~/automation]
-$ tree
-.
-??? node_modules
-?�� ??? n8n -> .pnpm/n8n@1.114.4_0725ed04a2a2a35c694575b9b91a2375/node_modules/n8n
-?�� ??? sqlite3 -> .pnpm/sqlite3@5.1.7/node_modules/sqlite3
-??? package.json
-??? pnpm-lock.yaml
-4 directories, 2 files
-```
-
-# Then rebuild SQLite3
-```
-sudo apt update
-sudo apt install -y build-essential python3 make g++ libsqlite3-dev
-```
-
-Rebuid using pnpm [OPTIONAL -> Not Worked]
-```
-pnpm add sqlite3 --save            # ensure sqlite3 is a dependency in package.json (not just in pnpm store)
-pnpm rebuild sqlite3               # rebuild native modules (recompiles for your current Node)
- OR 
-pnpm rebuild                       # or rebuild all native modules
-```
-COMMAND
-```
-node -v
-pnpm -v
-which node
-command -v n8n
-pnpm root -g
-```
-OUTPUT
-```
-v20.19.4
-10.18.2
-/usr/bin/node
-/root/.local/share/pnpm/global/5/node_modules
-```
-So cd to the node_modules dir and rebuild sqlite3 if you find it
-```
-cd /root/.local/share/pnpm/global/5/node_modules
-```
-This dir stores the global binaries i think , so add the sqlite3 binary herein 
-
-If already not setup pnpm then set it up now
-```
-pnpm setup
-```
-This will:
-
-Create the global package directory (usually ~/.local/share/pnpm)
-Set the PNPM_HOME environment variable (Add it to your shell’s PATH (in ~/.bashrc, ~/.zshrc, etc.) . Then source ~/.bashrc and ~/.zshrc
-
-```
-pnpm add -g sqlite3
-```
-
-OUTPUT
-```
-┌──(kali㉿localhost)-[~]
-└─$ pnpm install sqlite3 -g
-/home/kali/.local/share/pnpm/global/5:
-+ sqlite3 5.1.7
-
-╭ Warning ──────────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                               │
-│   Ignored build scripts: sqlite3.                                                             │
-│   Run "pnpm approve-builds -g" to pick which dependencies should be allowed to run scripts.   │
-│                                                                                               │
-╰───────────────────────────────────────────────────────────────────────────────────────────────╯
-Done in 8.5s using pnpm v10.18.1
-```
-
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
