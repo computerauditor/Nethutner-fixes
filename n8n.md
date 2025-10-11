@@ -1,5 +1,29 @@
 ### Configuration of kali 
 
+⚠️ NEVER use the package name as the directory 
+eg : do not ```mkdir n8n``` ❌
+            ```mkdir n8n-test```✅
+            ```mkdir autoation```✅ (herein we will create a dir at /Desktop or /kali )
+
+🔹 Step 0: Remove previous nvm/node/pnpm leftovers
+
+```
+# Remove nvm folder (if it exists)
+rm -rf ~/.nvm
+
+# Remove pnpm global folder (optional, cleans previous installs)
+rm -rf ~/.local/share/pnpm
+
+# Remove n8n globally (if installed via pnpm)
+pnpm remove -g n8n || true
+
+# Remove pnpm itself
+npm uninstall -g pnpm || true
+
+# Remove old n8n data (optional)
+rm -rf ~/.n8n
+
+
 ### INSTALLATION  
 
 ```
