@@ -123,7 +123,14 @@ add better-sqlite3 in the same n8n dir where all packages are located
 ```
 pnpm add better-sqlite3
 ```
-Inside the same n8n dir where all packages are located ```nano .env``` and paste the following code:
+
+Find the n8n dir by 
+
+```
+which n8n  # usually output (if installed n8n globally) ---> ~/.local/share/pnpm]
+```
+therein ,
+ie: Inside the same n8n dir where all packages are located ```nano .env``` and paste the following code:
 ```
 DB_TYPE=sqlite
 DB_SQLITE_POOL_SIZE=5
