@@ -17,10 +17,10 @@ v20.19.4
 
 cleared cache and ran npm with ```--unsafe-perm``` flag as root user 
 ```
-sudo rm -rf /root/.npm/_cacache
-sudo npm cache clean --force
-sudo mkdir -p /root/.npm/_cacache
-sudo chmod -R 777 /root/.npm
+sudo rm -rf /root/.npm/_cacache            # or kali if kali user
+sudo npm cache clean --force               # or kali if kali user 
+sudo mkdir -p /root/.npm/_cacache          # or kali if kali user
+sudo chmod -R 777 /root/.npm               # or kali if kali user
 # sudo npm install -g n8n --unsafe-perm
 ```
 didn't worked proper so used pnpm
