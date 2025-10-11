@@ -94,6 +94,7 @@ export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 PERMISSION ERROR FIXED!!!
 
 ### SQLite error :
+Can Try :
 
 pnpm stores global modules in a content-addressed store and creates symlinks in:
 ```
@@ -101,6 +102,12 @@ pnpm stores global modules in a content-addressed store and creates symlinks in:
 ```
 However, when n8n runs, it expects to require('sqlite3') in its own node_modules, not globally.
 Because pnpm isolates packages, n8n can’t see sqlite3 even though it’s installed globally.
+
+
+```
+https://stackoverflow.com/questions/58317165/installing-sqlite3-for-nodejs
+```
+
 ```
 cd n8n 
 ```
@@ -118,10 +125,25 @@ then approve all the packages ```press a``` and then ```ENTER``` to approve all 
 RUN n8n
 ```n8n```
 
+ERROR
+```
+nodes package n8n-nodes-base is already loaded.
+ Please delete this second copy at path /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/n8n-nodes-base
+nodes package n8n-nodes-base is already loaded.
+ Please delete this second copy at path /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/n8n-nodes-base
+nodes package @n8n/n8n-nodes-langchain is already loaded.
+ Please delete this second copy at path /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/@n8n/n8n-nodes-langchain
+nodes package @n8n/n8n-nodes-langchain is already loaded.
+ Please delete this second copy at path /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/@n8n/n8n-nodes-langchain
 
-
-
-
+```
+SOLUTIONS :
+```
+rm /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/n8n-nodes-base
+rm /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/n8n-nodes-base
+rm /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/@n8n/n8n-nodes-langchain
+rm /home/kali/automation/node_modules/.pnpm/n8n@1.114.4_4636955cc7c9a683d35ce5b4c22bfc3e/node_modules/n8n/node_modules/@n8n/n8n-nodes-langchain
+```
 
 
 
