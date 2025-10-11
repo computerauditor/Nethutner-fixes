@@ -92,11 +92,11 @@ Please try "nethunter kex kill" or restart your termux session and try again.
 The issue is due to the xstartup file ```cd /home/kali/.vnc``` cp the logs to ```/Desktop``` for reference and chatgpt if needed
 run ```nh -r``` in "Termux" and set a ```kex passwd``` , basically set a kex client on the through sudo user it will run successfully cp the xstart file from the ```/root/.vnc``` and paste it at ```/home/kali/.vnc``` 
 
-# Additionally if it doesn't work then 
+# Additionally if it doesn't work then [Download the nethunter and kex script files from this repository]
 ------------------------------------------------------------------------------------------------
 * INSIDE TERMUX :- 
 - make a backup of ```nethunter``` script inside ```data/data/com.termux/files/usr/bin```
-- Get the latest nethunter script from ```https://offs.ec/2MceZWr``` copy paste the content as ```nano nethunter``` in data/data/com.termux/files/usr/bin/nethunter and remember to ```chmod +x nethunter```
+- Get the latest nethunter script from ```https://offs.ec/2MceZWr``` copy paste the content as ```nano nethunter``` in data/data/com.termux/files/usr/bin/nethunter and remember to ```chmod +x nethunter``` or download the ```nethunter(chmod it)``` file from this repository [SAME THING]
 - It will rerun the installer and restart the nh set up ```DO NOT DELETE THE ROOTFS or the existing installation``` just go on typing ```N``` and go through the set.
    
 * INSIDE KALI :-
