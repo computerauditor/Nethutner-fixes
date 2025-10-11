@@ -22,7 +22,7 @@ npm uninstall -g pnpm || true
 
 # Remove old n8n data (optional)
 rm -rf ~/.n8n
-
+```
 
 ### INSTALLATION  
 
